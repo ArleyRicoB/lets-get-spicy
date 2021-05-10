@@ -1,12 +1,32 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import HomeComponent from '../components/Home';
 
 const Home = () => {
-  return (
-    <div className="container">
-      <h2>Let&apos;s get Spicy</h2>
-      <h6>Bacon Ipsum Generator</h6>
-    </div>
-  );
+  const [data, setData] = useState({});
+  const [paragraphs, setParagraphs] = useState(1);
+  const [startLorem, setStartLorem] = useState(1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios(
+        `${process.env.REACT_APP_API}/?type=all-meat&paras=${paragraphs}&start-with-lorem=${startLorem}`,
+      )
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data);
+
+  return <HomeComponent data={data} />;
 };
 
 export default Home;
