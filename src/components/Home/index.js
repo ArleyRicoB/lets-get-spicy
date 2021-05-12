@@ -10,13 +10,23 @@ const Home = ({
   setStartLorem,
   setSearch,
   search,
+  topWords,
+  totalWords,
+  totalCharacters,
 }) => (
   <div className="container">
     <h2>Let&apos;s get Spicy</h2>
     <h6>Bacon Ipsum Generator</h6>
-    <div>
-      <BarChart />
+
+    <div className="row">
+      <div className="col-5">{`TOTAL WORDS: ${totalWords}`}</div>
+      <div className="col-7">{`TOTAL CHARACTERS: ${totalCharacters}`}</div>
+      <div className="col-12">
+        <p>HISTOGRAM TOP 3 WORDS:</p>
+        <BarChart topWords={topWords} />
+      </div>
     </div>
+
     <div className="row">
       <div className="col-12">
         <div className="row">
@@ -70,10 +80,19 @@ Home.propTypes = {
   setStartLorem: PropTypes.func.isRequired,
   search: PropTypes.bool.isRequired,
   setSearch: PropTypes.func.isRequired,
+  topWords: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    }),
+  ),
+  totalWords: PropTypes.number.isRequired,
+  totalCharacters: PropTypes.number.isRequired,
 };
 
 Home.defaultProps = {
   data: [],
+  topWords: [],
 };
 
 export default Home;
