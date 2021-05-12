@@ -1,0 +1,16 @@
+@import '../../styles/breakpoints.scss';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+.error {
+  background-color: #f7f7f7;
+  height: 100vh;
+  padding: 100px 160px;
+
+  @include media-breakpoint-down(lg) {
+    padding: 40px 90px;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: 40px 20px;
+  }
+}
