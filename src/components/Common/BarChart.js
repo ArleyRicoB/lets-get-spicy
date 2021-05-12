@@ -8,7 +8,7 @@ const Chart = ({ topWords }) => (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart width={150} height={40} data={topWords}>
         <XAxis dataKey="key" />
-        <YAxis />
+        <YAxis width={20} />
         <Bar dataKey="value" fill="#BDBDBD" maxBarSize={100} />
       </BarChart>
     </ResponsiveContainer>

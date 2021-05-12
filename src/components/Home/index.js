@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BarChart from '../Common/BarChart';
+import './home.scss';
 
 const Home = ({
   data,
@@ -14,25 +15,36 @@ const Home = ({
   totalWords,
   totalCharacters,
 }) => (
-  <div className="container">
-    <h2>Let&apos;s get Spicy</h2>
+  <div className="container home">
+    <h2>
+      <b>Let&apos;s get Spicy</b>
+    </h2>
     <h6>Bacon Ipsum Generator</h6>
 
-    <div className="row">
-      <div className="col-5">{`TOTAL WORDS: ${totalWords}`}</div>
-      <div className="col-7">{`TOTAL CHARACTERS: ${totalCharacters}`}</div>
+    <div className="row graph-section">
+      <div className="col-12 col-md-5 mb-3">
+        <b>{`TOTAL WORDS: ${totalWords}`}</b>
+      </div>
+      <div className="col-12 col-md-7 mb-3">
+        <b>{`TOTAL CHARACTERS: ${totalCharacters}`}</b>
+      </div>
       <div className="col-12">
-        <p>HISTOGRAM TOP 3 WORDS:</p>
+        <p>
+          <b>HISTOGRAM TOP 3 WORDS:</b>
+        </p>
         <BarChart topWords={topWords} />
       </div>
     </div>
 
-    <div className="row">
-      <div className="col-12">
-        <div className="row">
-          <div className="col-4">
-            <label># PARAGRAPHS</label>
+    <div className="row text-section">
+      <div className="col-12 header p-3">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-center justify-content-center">
+          <div className="col py-2 d-flex justify-content-center justify-content-md-start align-items-center">
+            <label>
+              <b># PARAGRAPHS</b>
+            </label>
             <input
+              className="mx-2 paragraphs-number text-end"
               value={totalParagraphs}
               type="number"
               min="1"
@@ -40,10 +52,10 @@ const Home = ({
             />
           </div>
 
-          <div className="col-4">
+          <div className="col py-2 d-flex justify-content-center justify-content-md-start align-items-center">
             <div className="form-check">
               <label className="form-check-label" htmlFor="flexCheckDefault">
-                STARTS WITH LOREM
+                <b>STARTS WITH LOREM</b>
               </label>
               <input
                 className="form-check-input"
@@ -55,7 +67,7 @@ const Home = ({
             </div>
           </div>
 
-          <div className="col-4">
+          <div className="col py-2 text-center text-lg-end">
             <button type="button" className="btn btn-danger" onClick={() => setSearch(!search)}>
               GENERATE!
             </button>
@@ -63,7 +75,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="col-12">
+      <div className="col-12 paragraphs">
         {data?.map((paragraph, index) => (
           <p key={`paragraph-${index}`}>{paragraph}</p>
         ))}
