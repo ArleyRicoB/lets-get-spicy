@@ -1,7 +1,9 @@
 module.exports = {
   extends: ['airbnb', 'plugin:prettier/recommended'],
   plugins: ['prettier'],
-
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   rules: {
     'prettier/prettier': ['error'],
     'react/jsx-props-no-spreading': ['off'],

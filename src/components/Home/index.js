@@ -54,7 +54,7 @@ const Home = ({
       </div>
 
       <div className="col-12">
-        {data.map((paragraph, index) => (
+        {data?.map((paragraph, index) => (
           <p key={`paragraph-${index}`}>{paragraph}</p>
         ))}
       </div>
