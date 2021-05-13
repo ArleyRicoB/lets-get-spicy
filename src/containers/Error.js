@@ -1,11 +1,8 @@
 import React from 'react';
+import ErrorComponent from '../components/Error';
 
 const Error = () => {
-  return (
-    <div className="container">
-      <h2>Page not found</h2>
-    </div>
-  );
+  return <ErrorComponent />;
 };
 
 export default Error;
