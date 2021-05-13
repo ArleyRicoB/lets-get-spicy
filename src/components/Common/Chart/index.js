@@ -1,7 +1,7 @@
+import './chart.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis } from 'recharts';
-import './chart.scss';
 
 const Chart = ({ topWords }) => (
   <div className="chart w-100">

@@ -46,6 +46,9 @@ const Home = () => {
   const [topWords, setTopWords] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [search, setSearch] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,19 +56,26 @@ const Home = () => {
         startLorem ? '&start-with-lorem=1' : ''
       }`;
 
+      setLoading(true);
       await axios(url)
         .then((response) => {
           if (response && response.data) {
-            const result = wordFrecuencyCounting(response.data);
+            try {
+              const result = wordFrecuencyCounting(response.data);
 
-            setTotalWords(result.totalWords);
-            setTotalCharacters(result.totalCharacters);
-            setTopWords(result.topWords);
-            setData(response.data);
+              setTotalWords(result.totalWords);
+              setTotalCharacters(result.totalCharacters);
+              setTopWords(result.topWords);
+              setData(response.data);
+            } catch (err) {
+              setError({ message: 'Error while processing data', error: err });
+            }
           }
+
+          setLoading(false);
         })
-        .catch((e) => {
-          console.log(e);
+        .catch((err) => {
+          setError({ message: 'Error getting data', error: err });
         });
     };
 
@@ -84,6 +94,7 @@ const Home = () => {
       topWords={topWords}
       setSearch={setSearch}
       search={search}
+      loading={loading}
     />
   );
 };

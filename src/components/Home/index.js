@@ -1,7 +1,8 @@
+import './home.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import BarChart from '../Common/BarChart';
-import './home.scss';
+import BarChart from '../Common/Chart';
+import Loading from '../Common/Loading';
 
 const Home = ({
   data,
@@ -14,8 +15,10 @@ const Home = ({
   topWords,
   totalWords,
   totalCharacters,
+  loading,
 }) => (
   <div className="container home">
+    <Loading loading={loading} />
     <h2>
       <b>Let&apos;s get Spicy</b>
     </h2>
@@ -100,6 +103,7 @@ Home.propTypes = {
   ),
   totalWords: PropTypes.number.isRequired,
   totalCharacters: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {
