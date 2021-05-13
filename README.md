@@ -46,4 +46,8 @@ Your app is ready to be deployed!
 
 The algorithm complexity is O(n) because functions such as replace, split, join, map and reduce have Complexity **n**. take into account that the sort method according to the EcmaScript specification has a complexity **n**. Check the wordFrecuencyCounting function in src/containers/home for a better explanation.\
 \
-Take in mind: using other sort algorithms, the complexity could vary between **nlog(n)** or **n²**, and the algorithm complexity could change to **n²**.
+Take in mind: the complexity could vary using other types of sort algorithms.
+
+## Deployment
+
+the application uses github actions to deploy on [Heroku](https://lets-get-spicy.herokuapp.com/)
