@@ -1,34 +1,50 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import HomeComponent from '../components/Home';
 
+/*
+  Sum all the complexities calculated inside the function
+  O(n) + 1 + O(4n) + 1 + 1 + O(2n) + O(4n) = O(11n) + 3
+
+  Avoid constants
+  O(11n)
+
+  Assume that O(x*n), when x is a variable, belongs to O(n)
+  the complexity is O(n)
+*/
 const wordFrecuencyCounting = (data) => {
-  const completeText = data.join(' ');
-  const totalCharacters = completeText.length;
+  const completeText = data.join(' '); // O(n)
+  const totalCharacters = completeText.length; // 1
   // const charactersExcludingExtraSpaces = completeText.replace(/\s\s+/g, ' ').length;
 
+  // O(n + n + n + n) = O(4n)
   const formattedText = completeText
-    .replace(/\s\s+/g, ' ')
-    .replace(/[^a-zA-Z -']/g, '')
-    .toLowerCase()
-    .split(' ');
+    .replace(/\s\s+/g, ' ') // n
+    .replace(/[^a-zA-Z -']/g, '') // n
+    .toLowerCase() // n
+    .split(' '); // n
 
-  const totalWords = formattedText.length;
+  const totalWords = formattedText.length; // 1
 
-  const words = {};
+  const words = {}; // 1
 
+  // O(n*(1 + 1)) = O(2n)
   formattedText.reduce((acc, word) => {
+    // n
     if (acc[word]) acc[word] += 1;
-    else acc[word] = 1;
+    // 1
+    else acc[word] = 1; // 1
 
     return acc;
   }, words);
 
   // const wordsWithoutRepeating = Object.entries(words).length;
-  const topWords = Object.entries(words)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map((word) => ({ key: word[0], value: word[1] }));
+  // O(n + n + 2n) = O(4n)
+  const topWords = Object.entries(words) // n
+    .sort((a, b) => b[1] - a[1]) // n
+    .slice(0, 3) // n
+    .map((word) => ({ key: word[0], value: word[1] })); // n*(1 + 1) = 2n
 
   return {
     totalCharacters,
